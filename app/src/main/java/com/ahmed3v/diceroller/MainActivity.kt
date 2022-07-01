@@ -2,7 +2,7 @@ package com.ahmed3v.diceroller
 
 import android.os.Bundle
 import android.widget.Button
-import android.widget.TextView
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 
 /**
@@ -29,8 +29,22 @@ class MainActivity : AppCompatActivity() {
 
         val diceRoll = dice.roll()
 
-        // Update the screen with the dice roll
-        val resultTextView: TextView = findViewById(R.id.resultTextView)
-        resultTextView.text = diceRoll.toString()
+        val diceImage : ImageView = findViewById(R.id.diceImageView)
+
+        //Create a when loop so when a number is picked it's display that number in a diceImageView
+        val drawableResource = when(diceRoll){
+
+            1 -> R.drawable.dice_1
+            2 -> R.drawable.dice_2
+            3 -> R.drawable.dice_3
+            4 -> R.drawable.dice_4
+            5 -> R.drawable.dice_5
+            else -> R.drawable.dice_6
+        }
+
+        diceImage.setImageResource(drawableResource)
+
+        diceImage.contentDescription = diceRoll.toString()
+
     }
 }
